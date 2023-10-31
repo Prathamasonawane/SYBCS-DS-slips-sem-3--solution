@@ -1,0 +1,65 @@
+//Que2-There are lists where insertion should ensure the ordering of data elements. Since the elements are in ascending order the search can terminate once equal or greater element is found. Implement a singly linked list of ordered integers(ascending/descending) with insert, search, and display operations.//
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;a
+};
+
+struct Node* newNode(int data)
+{
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
+}
+
+struct Node* insert(struct Node* head, int data) 
+{
+struct Node* new_node = newNode(data);
+    if (head == NULL || data < head->data) 
+    {
+        new_node->next = head;
+        head = new_node;
+    } 
+    else
+    {
+            struct Node* temp1 = head;
+            while (temp1->next != NULL && data > temp1->next->data) 
+            {
+            temp1= temp1->next;
+            }
+        new_node->next = temp1->next;
+        temp1->next = new_node;
+    }
+    return head;
+}
+
+void display(struct Node* head) 
+{
+ struct Node* temp = head;
+    while (temp != NULL) 
+    {
+        printf("%d\t", temp->data);
+        temp = temp->next;
+    }
+}
+int main() 
+{
+    struct Node* head = NULL;
+    int i,num,n;
+     printf("Enter limit = ");   
+     scanf("%d",&n);
+    for(i=0;i<n;i++)
+     {
+         scanf("%d",&num);
+         head = insert(head,num);
+     }
+
+
+    display(head);
+}
