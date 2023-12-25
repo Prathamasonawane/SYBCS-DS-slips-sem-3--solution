@@ -1,0 +1,106 @@
+// Write a program to reverse the elements of a queue using queue library.
+// Implement basic queue operations init, enqueue, dequeue.
+
+
+#define MAX 5
+struct Queue
+{
+	int a[MAX];
+	int front,rear;
+}q;
+void init()
+{
+	q.front=-1;
+	q.rear=-1;
+}
+int isempty()
+{
+	if(q.front==-1 || q.front>q.rear)
+	return 1;
+	else
+	return 0;
+}
+int isfull()
+{
+	if(q.rear==MAX-1)
+	return 1;
+	else
+	return 0;
+}
+void enqueue(int num)
+{
+
+	if(isfull())
+	{
+		printf("queue is overflow:");
+	}
+	else
+	{
+		if(q.front==-1)
+		
+			q.front=0;
+	
+		q.rear++;
+		q.a[q.rear]=num;
+	}
+}
+void rev()
+{
+	int i;
+	for(i=q.rear;i>=q.front;i--)
+	{
+	printf("%d\t",q.a[i]);
+	}
+}
+void dequeue()
+{
+	int val;
+	if(isempty())
+	{
+		printf("queue is underflow");
+	}
+	else
+	{
+		val=q.a[q.front];
+		q.front++;
+	printf("%d\t ",val);
+	}
+	
+}
+	
+void disp()
+{
+	int i;
+	for(i=q.front;i<=q.rear;i++)
+	{
+		printf("%d\t",q.a[i]);
+	}
+}
+
+
+
+
+
+#include<stdio.h>
+#include"slip4.h"
+int main()
+{
+	int ch,num,i,n;
+	init();
+	printf("enter limit:");
+	scanf("%d",&n);
+	printf("Enter number:");
+	for(i=0;i<n;i++)
+	{
+   	           scanf("%d",&num);
+		       enqueue(num);
+
+}	
+	printf("QUEUE :-");	      
+	disp();
+	printf("\n revrese QUeue :");
+	rev();
+	// printf("\n deleted no :");
+	// adequeue();
+	
+}
