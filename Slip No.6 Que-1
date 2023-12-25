@@ -1,0 +1,46 @@
+/*Sort a random array of n integers (accept the value of n from user) in
+ascending order by using selection sort algorithm.*/
+
+
+
+#include<stdlib.h>
+#include<math.h>
+#include<stdio.h>
+int main()
+{
+	int selection(int a[100],int n);
+	int i,j,t,min,index,a[100],n;
+	printf("enter limit:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	printf("enter numbers:");
+	scanf("%d",&a[i]);
+	}
+	selection(a,n);
+	}
+	int selection(int a[100],int n)
+	{
+	int i,j,min,index,t;
+	for(i=0;i<n;i++)
+	{
+	min=a[i];
+	index=i;
+	for(j=i+1;j<n;j++)
+	{
+	if(a[j]<min)
+	{
+	min=a[j];
+	index=j;
+	}
+	t=a[i];
+	a[i]=a[index];
+	a[index]=t;
+	}
+}
+	printf("\n sorted array:");
+	for(i=0;i<n;i++)
+	{
+	printf("%d\t",a[i]);
+	}
+}
