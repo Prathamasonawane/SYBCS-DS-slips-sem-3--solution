@@ -1,0 +1,111 @@
+/* Implement a linear queue library (st_queue.h) of integers using a static
+implementation of the queue and implementing the init(Q), add(Q) and peek(Q)
+operations. Write a program that includes queue library and calls different
+queue operations */
+
+
+
+
+#define MAX 5
+struct queue
+{
+	int a[MAX];
+	int f,r;
+	}q;
+	void init()
+	{
+	q.f=-1;
+	q.r=-1;
+	}
+	int isempty()
+	{
+	if(q.f==-1 ||q.f>q.r )
+	return 1;
+	else
+	return 0;
+	}
+	int isfull()
+	{
+	if(q.r==MAX-1)
+	return 1;
+	else
+	return 0;
+	}
+	void push(int num)
+	{
+	if(isfull())
+	printf("full dont push:");
+	else
+	if(q.f==-1)
+	q.f=0;
+	q.r++;
+	q.a[q.r]=num;
+	printf("\n push succ:");
+	}
+	void disp()
+	{
+	int i;
+	for(i=q.f;i<=q.r;i++)
+	{
+	printf("%d\t",q.a[i]);
+	}
+}
+	void pop()
+	{
+	int val;
+	if(isempty())
+	{
+	printf("\n queue is empty:");
+	}
+	else
+	{
+	val=q.a[q.f];
+	q.f++;
+	printf("\n value =%d",val);
+	}
+}
+	void peek()
+	{
+	int val,i;
+	if(isempty())
+	{
+	printf("queue is empty:");
+	}
+	else
+	{
+	for(i=q.f;i<=q.r;i++);
+	 printf("peek val %d",q.a[q.f]);
+	}
+}
+
+
+
+
+
+
+ #include<stdio.h>
+#include"a62.h"
+int main()
+{
+	int ch,num;
+	init();
+	do
+	{
+	printf("\n 1-add \n 2-disp \n 3-pop \n 4-peek:");
+	printf("\n enter choice :");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+	case 1:printf("enter number:");
+	scanf("%d",&num);
+	push(num);
+	break;
+	case 2:disp();
+	break;
+	case 3:pop();
+	break;
+	case 4:peek();
+	break;
+	}
+}while(ch<5);
+	}
