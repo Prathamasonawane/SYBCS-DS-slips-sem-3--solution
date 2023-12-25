@@ -1,0 +1,95 @@
+//Implement a queue library (dyqueue.h) of integers using a dynamic
+(linked list) implementation of the queue and implement init, enqueue,
+dequeue, isempty, peek operations.//
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+	int data;
+	struct node *next;
+	};
+	struct node *newnode,*f,*r,*temp;
+	void init()
+	{
+	f=r=NULL;
+	}
+	int isempty()
+	{
+	if(f==NULL)
+	return 1;
+	else
+	return 0;
+	}
+	void insert(int num)
+	{
+	newnode=(struct node *)malloc(sizeof(struct node));
+	newnode->data=num;
+	newnode->next=NULL;
+	if(isempty())
+	f=r=newnode;
+	else
+	{
+	r->next=newnode;
+	r=newnode;
+	printf("\n isert successfully..");
+	}
+	}
+	void delq()
+	{
+	int val;
+	if(isempty())
+	printf("\n queue is empty:");
+	else
+	{
+	val=f->data;
+	temp=f;
+	f=f->next;
+	free(temp);
+	printf("\n deleted val %d",val);
+	}
+}
+	void disp()
+	{
+	struct node *temp;
+	for(temp=f;temp!=NULL;temp=temp->next)
+	{
+	printf("%d\t",temp->data);
+	}
+}
+	int peek()
+	{
+	if(f==NULL)
+	printf("\n queue is empty:");
+	else
+	{
+	return f->data;
+	}
+	}
+	int main()
+	{
+	int ch,num;
+	init();
+	do
+	{
+	printf("\n 1-insert \n 2-del\n 3-disp:");
+	printf("enter choice:");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+	case 1:
+	printf("enter number:");
+	scanf("%d",&num);
+	insert(num);
+	break;
+	case 2:delq();
+	break;
+	case 3:disp();
+	break;
+	case 4:printf("\n peek value:%d",peek());
+	break;
+	}
+}while(ch<5);
+}
