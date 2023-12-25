@@ -1,0 +1,34 @@
+//Sort a random array of n integers (accept the value of n from user) in
+ascending order by using insertion sort algorithm.//
+
+
+
+
+#include<stdio.h>
+int main()
+{
+        int i,j,n,k,key,a[20],t;
+        printf("enter limit:");
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+        printf("enter n numbers:");
+        scanf("%d",&a[i]);
+        }
+        for(i=0;i<n;i++)
+        {
+        key=a[i];
+        for(k=i-1;k>=0 && key<=a[k];k--)
+        {
+        t=a[k+1];
+        a[k+1]=a[k];
+        a[k]=t;
+        }
+        a[k+1]=key;
+        }
+        printf("\n Sorted list is:");
+        for(i=0;i<n;i++)
+        {
+        printf("%d\t",a[i]);
+        }
+}
