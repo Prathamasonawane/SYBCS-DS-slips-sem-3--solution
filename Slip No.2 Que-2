@@ -1,0 +1,93 @@
+/* Write a program that copies the contents of one stack into another. Use
+stack library to perform basic stack operations. The order of two stacks
+must be identical.(Hint: Use a temporary stack to preserve the order).*/
+
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+struct stack
+{
+	char a[MAX];
+	int top;
+	}s;
+	void init()
+	{
+	s.top=-1;
+	}
+	int isempty()
+	{
+	if(s.top==-1)
+	return 1;
+	else
+	return 0;
+	}
+	int isfull()
+	{
+	if(s.top==MAX-1)
+	return 1;
+	else
+	return 0;
+	}
+	void push(struct stack s1,int val)
+	{
+	if(isfull())
+	printf("stack is full don't push:");
+	else
+	{
+	s.top++;
+	s.a[s.top]=val;
+	}
+}
+	char pop()
+	{
+	int val;
+	if(isempty())
+	printf("stack is empty don't pop");
+	else
+	{
+	val=s.a[s.top];
+	s.top--;
+	return val;
+	}
+	}
+	void disp()
+	{
+	int i;
+	for(i=s.top;i>=0;i--)
+	{
+	printf("%d\t",s.a[i]);
+	}
+}
+	int main()
+	{
+	int val,i,n;
+	struct stack s1,s2,temp;
+	init(s1);
+	init(s2);
+	init(temp);
+	printf("enter limit of stack:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	printf("enter value:");
+	scanf("%d",&val);
+	push(s1,val);
+	}
+	for(i=s1.top;i>0;i--)
+	{
+	push(temp,s1.a[i]);
+	}
+	for(i=temp.top;i>0;i--)
+	{
+	push(s2,temp.a[i]);
+	}
+	printf("\n display original stack:");
+	disp(s1);
+	printf("\n display copy stack:");
+	disp(s2);
+	}
